@@ -14,6 +14,11 @@ Instrucciones:
 */
 
 // index.js
+// Polyfill para Object.hasOwn si no está disponible (Node < 16.9)
+if (typeof Object.hasOwn !== 'function') {
+  Object.hasOwn = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
